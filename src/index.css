@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    
+    --muted: 280 50% 10%;
+    --muted-foreground: 0 0% 70%;
+    
+    --primary: 355 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 280 60% 8%;
+    --secondary-foreground: 0 0% 100%;
+    
+    --accent: 355 100% 50%;
+    --accent-foreground: 0 0% 100%;
+    
+    --border: 280 30% 20%;
+    --input: 280 30% 15%;
+    --ring: 355 100% 50%;
+    
+    --noble-dark: 285 62% 11%;
+    --noble-red: 355 100% 50%;
+    --noble-black: 0 0% 0%;
+    
+    --whatsapp: 142 70% 49%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--noble-dark));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--noble-red));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(355 100% 40%);
+}
+
+/* Shimmer animation for decorative lines */
+.shimmer-line {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-line::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(253, 0, 29, 0.5),
+    transparent
+  );
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Highlight text effect */
+.highlight {
+  background-color: hsl(var(--noble-red));
+  padding: 0.1em 0.3em;
+  transform: skewX(-3deg);
+  display: inline-block;
+}
