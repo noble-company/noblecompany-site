@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 // Placeholder logos - substitua pelos logos reais dos clientes
 const clientLogos = [
-  { name: "Addept", src: "/imagens/client_logos/addept.jpeg" },
+  { name: "Addept", src: "/imagens/client_logos/logo_addept.jpeg" },
   { name: "Cliente 2", src: "/placeholder-logo-2.svg" },
   { name: "Cliente 3", src: "/placeholder-logo-3.svg" },
   { name: "Cliente 4", src: "/placeholder-logo-4.svg" },
