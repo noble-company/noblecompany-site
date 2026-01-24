@@ -2,13 +2,14 @@ import { motion } from "framer-motion";
 
 // Placeholder logos - substitua pelos logos reais dos clientes
 const clientLogos = [
-  { name: "Addept", src: "/imagens/client_logos/logo_addept.jpeg" },
-  { name: "FG Advogados", src: "/placeholder-logo-2.svg" },
-  { name: "Advocacia Mazza", src: "/placeholder-logo-3.svg" },
-  { name: "Gilli Imóveis", src: "/placeholder-logo-4.svg" },
-  { name: "Clinica Orall", src: "/placeholder-logo-5.svg" },
-  { name: "Luz Estetic Center", src: "/placeholder-logo-6.svg" },
-  { name: "Secret Look", src: "/placeholder-logo-7.svg" },
+  { name: "Addept", src: "/imagens/client_logos/adept.png" },
+  { name: "FG Advogados", src: "/imagens/client_logos/advogadosfg.png" },
+  { name: "Advocacia Mazza", src: "/imagens/client_logos/mazza.png" },
+  { name: "Gilli Imóveis", src: "/imagens/client_logos/gilli.png" },
+  { name: "Clinica Orall", src: "/imagens/client_logos/orall.png" },
+  { name: "Luz Estetic Center", src: "/imagens/client_logos/esteticcenterluz.png" },
+  { name: "Secret Look", src: "/imagens/client_logos/secretlook.png" },
+  { name: "Reality Buffet", src: "/imagens/client_logos/realitybuffet.png" },
 ];
 
 const ClientLogos = () => {
