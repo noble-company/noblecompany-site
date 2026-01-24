@@ -3,11 +3,12 @@ import { motion } from "framer-motion";
 // Placeholder logos - substitua pelos logos reais dos clientes
 const clientLogos = [
   { name: "Addept", src: "/imagens/client_logos/logo_addept.jpeg" },
-  { name: "Cliente 2", src: "/placeholder-logo-2.svg" },
-  { name: "Cliente 3", src: "/placeholder-logo-3.svg" },
-  { name: "Cliente 4", src: "/placeholder-logo-4.svg" },
-  { name: "Cliente 5", src: "/placeholder-logo-5.svg" },
-  { name: "Cliente 6", src: "/placeholder-logo-6.svg" },
+  { name: "FG Advogados", src: "/placeholder-logo-2.svg" },
+  { name: "Advocacia Mazza", src: "/placeholder-logo-3.svg" },
+  { name: "Gilli Imóveis", src: "/placeholder-logo-4.svg" },
+  { name: "Clinica Orall", src: "/placeholder-logo-5.svg" },
+  { name: "Luz Estetic Center", src: "/placeholder-logo-6.svg" },
+  { name: "Secret Look", src: "/placeholder-logo-7.svg" },
 ];
 
 const ClientLogos = () => {
@@ -42,18 +43,18 @@ const ClientLogos = () => {
             >
               <div className="w-24 h-12 md:w-32 md:h-16 flex items-center justify-center grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300">
                 {/* Placeholder visual - substitua pela tag img com o logo real */}
+                {/*
                 <div className="w-full h-full bg-muted/30 rounded-lg flex items-center justify-center border border-border/30">
                   <span className="text-muted-foreground text-xs md:text-sm font-medium">
                     {logo.name}
                   </span>
                 </div>
-                {/* Descomente abaixo quando tiver os logos reais:
+                */}
                 <img
                   src={logo.src}
                   alt={logo.name}
                   className="max-w-full max-h-full object-contain"
                 />
-                */}
               </div>
             </div>
           ))}
