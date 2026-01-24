@@ -43,9 +43,9 @@ const ProblemSection = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <picture>
-            <source media="(max-width: 480px)" srcSet="/imagens/mobile/problemas.png" />
+            <source media="(max-width: 480px)" srcSet="/imagens/index/mobile/problemas.png" />
             <img
-              src="/imagens/problemas.png"
+              src="/imagens/index/problemas.png"
               alt="Principais problemas que o empresário enfrenta"
               className="w-full h-auto rounded-lg"
             />

@@ -11,7 +11,7 @@ const AboutNoble = () => {
     <section
       id="about-noble"
       className="relative py-20 md:py-28 bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: "url('/imagens/about-noble-bg.png')" }}
+      style={{ backgroundImage: "url('/imagens/index/about-noble-bg.png')" }}
     >
       <div className="absolute inset-0 bg-noble-black/85" />
       

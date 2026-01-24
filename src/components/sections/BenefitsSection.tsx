@@ -28,9 +28,9 @@ const BenefitsSection = () => {
           whileHover={{ scale: 1.02 }}
         >
           <picture>
-            <source media="(max-width: 480px)" srcSet="/imagens/mobile/beneficios.png" />
+            <source media="(max-width: 480px)" srcSet="/imagens/index/mobile/beneficios.png" />
             <img
-              src="/imagens/beneficios.png"
+              src="/imagens/index/beneficios.png"
               alt="Benefícios do Método Noble AI"
               className="w-full h-auto rounded-lg"
             />

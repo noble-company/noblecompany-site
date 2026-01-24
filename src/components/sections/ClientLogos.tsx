@@ -2,19 +2,19 @@ import { motion } from "framer-motion";
 
 // Placeholder logos - substitua pelos logos reais dos clientes
 const clientLogos = [
-  { name: "Addept", src: "/imagens/client_logos/adept.png" },
-  { name: "FG Advogados", src: "/imagens/client_logos/advogadosfg.png" },
-  { name: "Advocacia Mazza", src: "/imagens/client_logos/mazza.png" },
-  { name: "Gilli Imóveis", src: "/imagens/client_logos/gilli.png" },
-  { name: "Clinica Orall", src: "/imagens/client_logos/orall.png" },
-  { name: "Luz Estetic Center", src: "/imagens/client_logos/esteticcenterluz.png" },
-  { name: "Secret Look", src: "/imagens/client_logos/secretlook.png" },
-  { name: "Reality Buffet", src: "/imagens/client_logos/realitybuffet.png" },
+  { name: "Addept", src: "/imagens/index/client_logos/adept.png", url: "https://addept.ai/" },
+  { name: "FG Advogados", src: "/imagens/index/client_logos/advogadosfg.png", url: "https://www.instagram.com/dra.rose.fgadvogados/" },
+  { name: "Advocacia Mazza", src: "/imagens/index/client_logos/mazza.png", url: "https://advocaciamazza.com.br/" },
+  { name: "Gilli Imóveis", src: "/imagens/index/client_logos/gilli.png", url: "" },
+  { name: "Clinica Orall", src: "/imagens/index/client_logos/orall.png", url: "https://www.instagram.com/clinicaorall/" },
+  { name: "Luz Estetic Center", src: "/imagens/index/client_logos/esteticcenterluz.png", url: "https://luzesteticcenter.com/" },
+  { name: "Secret Look", src: "/imagens/index/client_logos/secretlook.png", url: "https://www.instagram.com/secretlooklisboa/" },
+  { name: "Reality Buffet", src: "/imagens/index/client_logos/realitybuffet.png", url: "https://www.instagram.com/buffetreality/" },
 ];
 
 const ClientLogos = () => {
-  // Duplica os logos para criar efeito infinito seamless
-  const duplicatedLogos = [...clientLogos, ...clientLogos];
+  // Duplica os logos 3x para criar efeito infinito seamless
+  const duplicatedLogos = [...clientLogos, ...clientLogos, ...clientLogos];
 
   return (
     <section className="py-12 md:py-16 bg-secondary overflow-hidden">
@@ -36,13 +36,16 @@ const ClientLogos = () => {
         <div className="absolute right-0 top-0 bottom-0 w-20 md:w-32 bg-gradient-to-l from-secondary to-transparent z-10 pointer-events-none" />
 
         {/* Container do carrossel */}
-        <div className="flex animate-scroll hover:pause-animation">
+        <div className="flex animate-scroll">
           {duplicatedLogos.map((logo, index) => (
-            <div
+            <a
               key={`${logo.name}-${index}`}
-              className="flex-shrink-0 mx-8 md:mx-12 flex items-center justify-center"
+              href={logo.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-shrink-0 mx-10 md:mx-14 flex items-center justify-center cursor-pointer"
             >
-              <div className="w-24 h-12 md:w-32 md:h-16 flex items-center justify-center grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300">
+              <div className="w-36 h-18 md:w-48 md:h-24 flex items-center justify-center grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300">
                 {/* Placeholder visual - substitua pela tag img com o logo real */}
                 {/*
                 <div className="w-full h-full bg-muted/30 rounded-lg flex items-center justify-center border border-border/30">
@@ -57,7 +60,7 @@ const ClientLogos = () => {
                   className="max-w-full max-h-full object-contain"
                 />
               </div>
-            </div>
+            </a>
           ))}
         </div>
       </div>

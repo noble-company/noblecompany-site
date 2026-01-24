@@ -4,8 +4,8 @@ const ProductSection = () => {
   return (
     <section
       className="relative py-20 md:py-28 bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: "url('/imagens/hero-bg2.png')" }}
-    >
+      style={{ backgroundImage: "url('/imagens/index/hero-bg2.png')" }}    >
+    
       <div className="absolute inset-0 bg-gradient-to-b from-noble-black via-noble-black/80 to-noble-black" />
       
       <div className="container mx-auto px-4 relative z-10">
@@ -59,9 +59,9 @@ const ProductSection = () => {
           whileHover={{ scale: 1.02 }}
         >
           <picture>
-            <source media="(max-width: 480px)" srcSet="/imagens/mobile/produtos.png" />
+            <source media="(max-width: 480px)" srcSet="/imagens/index/mobile/produtos.png" />
             <img
-              src="/imagens/produtos.png"
+              src="/imagens/index/produtos.png"
               alt="O que entregamos para nossos clientes"
               className="w-full h-auto rounded-lg"
             />

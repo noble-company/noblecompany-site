@@ -44,9 +44,9 @@ const MethodSection = () => {
           transition={{ duration: 0.6, delay: 0.3 }}
         >
           <picture>
-            <source media="(max-width: 480px)" srcSet="/imagens/mobile/metodo.png" />
+            <source media="(max-width: 480px)" srcSet="/imagens/index/mobile/metodo.png" />
             <img
-              src="/imagens/metodo.png"
+              src="/imagens/index/metodo.png"
               alt="Pilares do Método Noble AI"
               className="w-full h-auto rounded-lg"
             />
