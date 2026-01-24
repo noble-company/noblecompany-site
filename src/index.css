@@ -97,6 +97,25 @@
 }
 
 /* Highlight text effect */
+/* Infinite scroll animation for client logos */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 20s linear infinite;
+}
+
+.animate-scroll:hover,
+.pause-animation {
+  animation-play-state: paused;
+}
+
 .highlight {
   background-color: hsl(var(--noble-red));
   padding: 0.1em 0.3em;
