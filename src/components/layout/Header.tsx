@@ -55,6 +55,12 @@ const Header = () => {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
           <button
+            onClick={() => scrollToSection("project-showcase")}
+            className="text-foreground/80 hover:text-foreground transition-colors font-medium"
+          >
+            Cases
+          </button>
+          <button
             onClick={() => scrollToSection("metodo")}
             className="text-foreground/80 hover:text-foreground transition-colors font-medium"
           >
@@ -105,6 +111,12 @@ const Header = () => {
             transition={{ duration: 0.3 }}
           >
             <div className="container mx-auto px-4 py-6 flex flex-col gap-4">
+              <button
+                onClick={() => scrollToSection("project-showcase")}
+                className="text-foreground/80 hover:text-foreground transition-colors font-medium text-left py-2"
+              >
+                Cases
+              </button>
               <button
                 onClick={() => scrollToSection("metodo")}
                 className="text-foreground/80 hover:text-foreground transition-colors font-medium text-left py-2"

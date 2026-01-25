@@ -11,7 +11,7 @@ const ProjectShowcase = ({ projects = defaultProjects }: ProjectShowcaseProps) =
   const [selectedProject, setSelectedProject] = useState(projects[0]);
 
   return (
-    <section className="py-16 md:py-24 bg-background">
+    <section id="project-showcase" className="py-16 md:py-24 bg-background">
       <div className="container mx-auto px-4">
         {/* Header */}
         <motion.div
