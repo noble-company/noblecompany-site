@@ -41,6 +41,23 @@ const ContactCTA = ({ text, buttonText = "Agende uma Demonstração" }: ContactC
       (window as any).gtag("event", "whatsapp_click", eventData);
     }
 
+    // Fire Meta Pixel event
+    if (typeof window !== "undefined" && (window as any).fbq) {
+      console.log("Firing Meta Pixel event..."); // Debug log
+      (window as any).fbq("track", "Contact", {
+        content_name: "WhatsApp Inquiry",
+        content_category: eventData.button_location,
+        custom_data: {
+          utm_source: eventData.utm_source,
+          utm_campaign: eventData.utm_campaign,
+          utm_medium: eventData.utm_medium,
+        },
+      });
+      console.log("Meta Pixel fired!"); // Debug log
+    } else {
+      console.log("Meta Pixel not found!"); // Debug log
+    }
+
     // Open WhatsApp in new window/tab
     window.open(getWhatsAppLink(), "_blank");
   };
