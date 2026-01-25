@@ -1,35 +1,13 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import { projects as defaultProjects, Project } from "../../lib/projectData";
 
-const projects = [
-  {
-    id: 1,
-    title: "Agente IA de Vendas para Ecommerce",
-    description: "Automatizamos a qualificação de leads e aumentamos conversões com atendimento personalizado 24/7.",
-    youtubeId: "dQw4w9WgXcQ", // Placeholder - substituir pelo ID real
-  },
-  {
-    id: 2,
-    title: "Automação de Atendimento WhatsApp",
-    description: "Sistema inteligente que responde clientes automaticamente, agenda reuniões e qualifica leads.",
-    youtubeId: "dQw4w9WgXcQ", // Placeholder
-  },
-  {
-    id: 3,
-    title: "Análise de Dados com IA",
-    description: "Transforme dados brutos em insights acionáveis com dashboards inteligentes e relatórios automáticos.",
-    youtubeId: "dQw4w9WgXcQ", // Placeholder
-  },
-  {
-    id: 4,
-    title: "Sistema de Qualificação de Leads",
-    description: "IA que analisa e pontua leads automaticamente, priorizando os mais propensos a converter.",
-    youtubeId: "dQw4w9WgXcQ", // Placeholder
-  },
-];
+interface ProjectShowcaseProps {
+  projects?: Project[];
+}
 
-const ProjectShowcase = () => {
+const ProjectShowcase = ({ projects = defaultProjects }: ProjectShowcaseProps) => {
   const [selectedProject, setSelectedProject] = useState(projects[0]);
 
   return (
@@ -47,7 +25,7 @@ const ProjectShowcase = () => {
             Projetos feitos pela <span className="text-primary">Noble AI</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            De automação de processos a análises avançadas, veja como transformamos negócios com inteligência artificial.
+            De automação de processos a análises avançadas, veja cases reais de como transformamos negócios com inteligência artificial.
           </p>
         </motion.div>
 
