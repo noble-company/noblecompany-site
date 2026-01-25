@@ -3,6 +3,7 @@ import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/layout/WhatsAppButton";
 import Hero from "@/components/sections/Hero";
 import ClientLogos from "@/components/sections/ClientLogos";
+import ProjectShowcase from "@/components/sections/ProjectShowcase";
 import ProblemSection from "@/components/sections/ProblemSection";
 import ContactCTA from "@/components/sections/ContactCTA";
 import MethodSection from "@/components/sections/MethodSection";
@@ -20,6 +21,7 @@ const Index = () => {
       <main>
         <Hero />
         <ClientLogos />
+        <ProjectShowcase />
         <ProblemSection />
         <ContactCTA text="Começe a utilizar Agentes I.A. na sua empresa e veja seu negócio decolar!" />
         <MethodSection />
