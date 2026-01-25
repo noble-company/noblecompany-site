@@ -35,6 +35,13 @@ jobs:
       - name: Build project
         run: npm run build
 
+      - name: Verify build output
+        run: |
+          echo "Checking if dist folder exists..."
+          ls -la dist/ || echo "dist folder not found!"
+          echo "Contents of dist folder:"
+          find dist -type f | head -20
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
@@ -42,7 +49,9 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: './dist'
+        continue-on-error: false
 
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
+        timeout-minutes: 5
