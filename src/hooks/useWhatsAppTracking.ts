@@ -16,6 +16,13 @@ export function useWhatsAppTracking() {
         button_location: buttonLocation,
       };
 
+      // Extract Meta cookies for CAPI
+      const fbp = document.cookie.match(/_fbp=([^;]+)/)?.[1];
+      const fbc = document.cookie.match(/_fbc=([^;]+)/)?.[1];
+
+      // Generate unique event ID for deduplication
+      const eventId = `${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+
       // Push to GTM dataLayer
       if (typeof window !== "undefined" && (window as any).dataLayer) {
         (window as any).dataLayer.push(eventData);
@@ -26,7 +33,7 @@ export function useWhatsAppTracking() {
         (window as any).gtag("event", "whatsapp_click", eventData);
       }
 
-      // Fire Meta Pixel event
+      // Fire Meta Pixel event with eventID for deduplication
       if (typeof window !== "undefined" && (window as any).fbq) {
         (window as any).fbq("track", "Contact", {
           content_name: "WhatsApp Inquiry",
@@ -36,8 +43,30 @@ export function useWhatsAppTracking() {
             utm_campaign: eventData.utm_campaign,
             utm_medium: eventData.utm_medium,
           },
+        }, {
+          eventID: eventId,
         });
       }
+
+      // Send event to Meta CAPI via server webhook
+      fetch('https://webhook.noblecompany.digital/webhook/meta/conversion', {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          eventName: 'Contact',
+          eventId: eventId,
+          eventData: eventData,
+          userData: {
+            fbp: fbp || null,
+            fbc: fbc || null,
+          },
+        }),
+      }).catch((error) => {
+        console.error('Meta CAPI error:', error);
+        // Silently fail - doesn't block WhatsApp click
+      });
 
       // Open WhatsApp in new window/tab
       window.open(getWhatsAppLink(), "_blank");
