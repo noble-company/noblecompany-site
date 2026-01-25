@@ -7,6 +7,8 @@ export function useWhatsAppTracking() {
 
   const handleWhatsAppClick = useCallback(
     (buttonLocation: string = "direct") => {
+      console.log(`[WhatsApp Click] Button location: ${buttonLocation}`);
+      
       const eventData = {
         event: "whatsapp_click",
         utm_source: utmParams.utm_source || "direct",
@@ -15,6 +17,8 @@ export function useWhatsAppTracking() {
         utm_content: utmParams.utm_content || buttonLocation,
         button_location: buttonLocation,
       };
+
+      console.log("[WhatsApp Click] Event data:", eventData);
 
       // Extract Meta cookies for CAPI
       const fbp = document.cookie.match(/_fbp=([^;]+)/)?.[1];
@@ -25,16 +29,19 @@ export function useWhatsAppTracking() {
 
       // Push to GTM dataLayer
       if (typeof window !== "undefined" && (window as any).dataLayer) {
+        console.log("[WhatsApp Click] Pushing to GTM dataLayer");
         (window as any).dataLayer.push(eventData);
       }
 
       // Also fire GA4 event
       if (typeof window !== "undefined" && (window as any).gtag) {
+        console.log("[WhatsApp Click] Firing GA4 event");
         (window as any).gtag("event", "whatsapp_click", eventData);
       }
 
       // Fire Meta Pixel event with eventID for deduplication
       if (typeof window !== "undefined" && (window as any).fbq) {
+        console.log("[WhatsApp Click] Firing Meta Pixel event");
         (window as any).fbq("track", "Contact", {
           content_name: "WhatsApp Inquiry",
           content_category: buttonLocation,
@@ -49,6 +56,7 @@ export function useWhatsAppTracking() {
       }
 
       // Send event to Meta CAPI via server webhook
+      console.log("[WhatsApp Click] Sending to Meta CAPI webhook");
       fetch('https://webhook.noblecompany.digital/webhook/meta/conversion', {
         method: 'POST',
         headers: { 
@@ -69,6 +77,7 @@ export function useWhatsAppTracking() {
       });
 
       // Open WhatsApp in new window/tab
+      console.log("[WhatsApp Click] Opening WhatsApp");
       window.open(getWhatsAppLink(), "_blank");
     },
     [utmParams]
