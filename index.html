@@ -50,7 +50,40 @@
       s.parentNode.insertBefore(t,s)}(window, document,'script',
       'https://connect.facebook.net/en_US/fbevents.js');
       fbq('init', '818538683722774');
-      fbq('track', 'PageView');
+      
+      // Track page view with deduplication and fbc
+      (function() {
+        const checkFbq = setInterval(() => {
+          if (window.fbq) {
+            clearInterval(checkFbq);
+            const fbc = document.cookie.match(/_fbc=([^;]+)/)?.[1];
+            const eventId = 'pv_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+            window.fbq('track', 'PageView', {}, { eventID: eventId });
+            
+            if (fbc) {
+              fetch('https://webhook.noblecompany.digital/webhook/meta/conversion', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  eventName: 'PageView',
+                  eventId: eventId,
+                  eventData: {
+                    event: 'page_view',
+                    page_url: window.location.href,
+                    referrer: document.referrer,
+                  },
+                  userData: {
+                    fbp: document.cookie.match(/_fbp=([^;]+)/)?.[1] || null,
+                    fbc: fbc,
+                  },
+                }),
+              }).catch((error) => {
+                console.error('Meta CAPI PageView error:', error);
+              });
+            }
+          }
+        }, 100);
+      })();
     </script>
   </head>
   <body>
