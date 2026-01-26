@@ -13,17 +13,23 @@ export function trackPageView() {
       // Track page view with deduplication
       (window as any).fbq("track", "PageView", {}, { eventID: eventId });
 
-      // Send to CAPI webhook if fbc exists
+      // Send to page_view webhook if fbc exists
       if (metaCookies.fbc) {
-        sendToMetaCAPI({
-          eventName: 'PageView',
-          eventId: eventId,
-          eventData: {
-            event: 'page_view',
-            page_url: window.location.href,
-            referrer: document.referrer,
-          },
-          userData: metaCookies,
+        fetch('https://webhook.noblecompany.digital/webhook/meta/page_view', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            eventName: 'PageView',
+            eventId: eventId,
+            eventData: {
+              event: 'page_view',
+              page_url: window.location.href,
+              referrer: document.referrer,
+            },
+            userData: metaCookies,
+          }),
+        }).catch((error) => {
+          console.error('Page view webhook error:', error);
         });
       }
     }

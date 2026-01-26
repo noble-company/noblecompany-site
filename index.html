@@ -67,9 +67,9 @@
             // Track page view with deduplication
             window.fbq('track', 'PageView', {}, { eventID: eventId });
             
-            // Send to CAPI if fbc exists
+            // Send to page_view webhook if fbc exists
             if (fbc) {
-              fetch('https://webhook.noblecompany.digital/webhook/meta/conversion', {
+              fetch('https://webhook.noblecompany.digital/webhook/meta/page_view', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -83,7 +83,7 @@
                   userData: { fbp, fbc },
                 }),
               }).catch((error) => {
-                console.error('Meta CAPI PageView error:', error);
+                console.error('Page view webhook error:', error);
               });
             }
           }
