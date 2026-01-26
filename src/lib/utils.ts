@@ -49,24 +49,17 @@ export async function sendToMetaCAPI(payload: {
   userData: { fbp: string | null; fbc: string | null };
 }) {
   try {
-    // Use sendBeacon for better reliability and CORS-free handling
-    // sendBeacon is more reliable for analytics and doesn't require CORS
-    if (navigator.sendBeacon) {
-      navigator.sendBeacon('https://webhook.noblecompany.digital/webhook/meta/conversion', JSON.stringify(payload));
-    } else {
-      // Fallback to fetch if sendBeacon not available
-      const response = await fetch('https://webhook.noblecompany.digital/webhook/meta/conversion', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
-      
-      if (!response.ok) {
-        console.error(`Meta CAPI error: ${response.status}`);
-      }
+    const response = await fetch('https://webhook.noblecompany.digital/webhook/meta/conversion', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    
+    if (!response.ok) {
+      console.error(`Meta CAPI error: ${response.status}`);
     }
   } catch (error) {
-    console.error('Meta CAPI send error:', error);
+    console.error('Meta CAPI fetch error:', error);
     // Silently fail - doesn't block user interactions
   }
 }
