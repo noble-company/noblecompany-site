@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { getWhatsAppLink } from "@/lib/utils";
+import { useWhatsAppTracking } from "@/hooks/useWhatsAppTracking";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const { handleWhatsAppClick } = useWhatsAppTracking();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -78,16 +79,14 @@ const Header = () => {
           >
             FAQ
           </button>
-          <motion.a
-            href={getWhatsAppLink()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-primary text-primary-foreground px-6 py-2.5 rounded-md font-semibold hover:bg-primary/90 transition-colors"
+          <motion.button
+            onClick={() => handleWhatsAppClick("header_desktop")}
+            className="bg-primary text-primary-foreground px-6 py-2.5 rounded-md font-semibold hover:bg-primary/90 transition-colors cursor-pointer border-none"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             Fale Conosco
-          </motion.a>
+          </motion.button>
         </nav>
 
         {/* Mobile Menu Toggle */}
@@ -135,14 +134,12 @@ const Header = () => {
               >
                 FAQ
               </button>
-              <a
-                href={getWhatsAppLink()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-primary text-primary-foreground px-6 py-3 rounded-md font-semibold text-center hover:bg-primary/90 transition-colors"
+              <button
+                onClick={() => handleWhatsAppClick("header_mobile")}
+                className="bg-primary text-primary-foreground px-6 py-3 rounded-md font-semibold text-center hover:bg-primary/90 transition-colors cursor-pointer border-none w-full"
               >
                 Fale Conosco
-              </a>
+              </button>
             </div>
           </motion.nav>
         )}
