@@ -56,10 +56,18 @@
         const checkFbq = setInterval(() => {
           if (window.fbq) {
             clearInterval(checkFbq);
+            
+            // Extract Meta cookies
+            const fbp = document.cookie.match(/_fbp=([^;]+)/)?.[1] || null;
             const fbc = document.cookie.match(/_fbc=([^;]+)/)?.[1];
+            
+            // Generate unique event ID
             const eventId = 'pv_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+            
+            // Track page view with deduplication
             window.fbq('track', 'PageView', {}, { eventID: eventId });
             
+            // Send to CAPI if fbc exists
             if (fbc) {
               fetch('https://webhook.noblecompany.digital/webhook/meta/conversion', {
                 method: 'POST',
@@ -72,10 +80,7 @@
                     page_url: window.location.href,
                     referrer: document.referrer,
                   },
-                  userData: {
-                    fbp: document.cookie.match(/_fbp=([^;]+)/)?.[1] || null,
-                    fbc: fbc,
-                  },
+                  userData: { fbp, fbc },
                 }),
               }).catch((error) => {
                 console.error('Meta CAPI PageView error:', error);

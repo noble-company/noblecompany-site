@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { getWhatsAppLink } from "@/lib/utils";
+import { getWhatsAppLink, generateEventId, getMetaCookies, sendToMetaCAPI } from "@/lib/utils";
 import { useUTMParams } from "./useUTMParams";
 
 export function useWhatsAppTracking() {
@@ -20,12 +20,8 @@ export function useWhatsAppTracking() {
 
       console.log("[WhatsApp Click] Event data:", eventData);
 
-      // Extract Meta cookies for CAPI
-      const fbp = document.cookie.match(/_fbp=([^;]+)/)?.[1];
-      const fbc = document.cookie.match(/_fbc=([^;]+)/)?.[1];
-
-      // Generate unique event ID for deduplication
-      const eventId = `${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+      const metaCookies = getMetaCookies();
+      const eventId = generateEventId();
 
       // Push to GTM dataLayer
       if (typeof window !== "undefined" && (window as any).dataLayer) {
@@ -57,23 +53,11 @@ export function useWhatsAppTracking() {
 
       // Send event to Meta CAPI via server webhook
       console.log("[WhatsApp Click] Sending to Meta CAPI webhook");
-      fetch('https://webhook.noblecompany.digital/webhook/meta/conversion', {
-        method: 'POST',
-        headers: { 
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          eventName: 'Contact',
-          eventId: eventId,
-          eventData: eventData,
-          userData: {
-            fbp: fbp || null,
-            fbc: fbc || null,
-          },
-        }),
-      }).catch((error) => {
-        console.error('Meta CAPI error:', error);
-        // Silently fail - doesn't block WhatsApp click
+      sendToMetaCAPI({
+        eventName: 'Contact',
+        eventId: eventId,
+        eventData: eventData,
+        userData: metaCookies,
       });
 
       // Open WhatsApp in new window/tab
