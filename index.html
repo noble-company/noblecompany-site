@@ -50,44 +50,7 @@
       s.parentNode.insertBefore(t,s)}(window, document,'script',
       'https://connect.facebook.net/en_US/fbevents.js');
       fbq('init', '818538683722774');
-      
-      // Track page view with deduplication and fbc
-      (function() {
-        const checkFbq = setInterval(() => {
-          if (window.fbq) {
-            clearInterval(checkFbq);
-            
-            // Extract Meta cookies
-            const fbp = document.cookie.match(/_fbp=([^;]+)/)?.[1] || null;
-            const fbc = document.cookie.match(/_fbc=([^;]+)/)?.[1];
-            
-            // Generate unique event ID
-            const eventId = 'pv_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-            
-            // Track page view with deduplication
-            window.fbq('track', 'PageView', {}, { eventID: eventId });
-            
-            // Send to page_view webhook if fbc exists
-            if (fbc) {
-              // Use sendBeacon for better reliability and CORS-free handling
-              try {
-                navigator.sendBeacon('https://webhook.noblecompany.digital/webhook/meta/page_view', JSON.stringify({
-                  eventName: 'PageView',
-                  eventId: eventId,
-                  eventData: {
-                    event: 'page_view',
-                    page_url: window.location.href,
-                    referrer: document.referrer,
-                  },
-                  userData: { fbp, fbc },
-                }));
-              } catch (error) {
-                console.error('Page view beacon error:', error);
-              }
-            }
-          }
-        }, 100);
-      })();
+      fbq('track', 'PageView');
     </script>
   </head>
   <body>
