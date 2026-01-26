@@ -15,10 +15,9 @@ export function trackPageView() {
 
       // Send to page_view webhook if fbc exists
       if (metaCookies.fbc) {
-        fetch('https://webhook.noblecompany.digital/webhook/meta/page_view', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
+        try {
+          // Use sendBeacon for better reliability and CORS-free handling
+          navigator.sendBeacon('https://webhook.noblecompany.digital/webhook/meta/page_view', JSON.stringify({
             eventName: 'PageView',
             eventId: eventId,
             eventData: {
@@ -27,10 +26,10 @@ export function trackPageView() {
               referrer: document.referrer,
             },
             userData: metaCookies,
-          }),
-        }).catch((error) => {
-          console.error('Page view webhook error:', error);
-        });
+          }));
+        } catch (error) {
+          console.error('Page view beacon error:', error);
+        }
       }
     }
   }, 100);

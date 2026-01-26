@@ -69,12 +69,9 @@
             
             // Send to page_view webhook if fbc exists
             if (fbc) {
-              // Temporarily disabled to test if Contact events work
-              /*
-              fetch('https://webhook.noblecompany.digital/webhook/meta/page_view', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
+              // Use sendBeacon for better reliability and CORS-free handling
+              try {
+                navigator.sendBeacon('https://webhook.noblecompany.digital/webhook/meta/page_view', JSON.stringify({
                   eventName: 'PageView',
                   eventId: eventId,
                   eventData: {
@@ -83,11 +80,10 @@
                     referrer: document.referrer,
                   },
                   userData: { fbp, fbc },
-                }),
-              }).catch((error) => {
-                console.error('Page view webhook error:', error);
-              });
-              */
+                }));
+              } catch (error) {
+                console.error('Page view beacon error:', error);
+              }
             }
           }
         }, 100);
