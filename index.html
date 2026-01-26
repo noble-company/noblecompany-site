@@ -69,6 +69,8 @@
             
             // Send to page_view webhook if fbc exists
             if (fbc) {
+              // Temporarily disabled to test if Contact events work
+              /*
               fetch('https://webhook.noblecompany.digital/webhook/meta/page_view', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -85,6 +87,7 @@
               }).catch((error) => {
                 console.error('Page view webhook error:', error);
               });
+              */
             }
           }
         }, 100);
