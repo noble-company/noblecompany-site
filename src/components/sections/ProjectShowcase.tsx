@@ -22,7 +22,7 @@ const ProjectShowcase = ({ projects = defaultProjects }: ProjectShowcaseProps) =
           className="text-center mb-12 md:mb-16"
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            Projetos feitos pela <span className="text-primary">Noble AI</span>
+            Projetos feitos pela <span className="text-primary">Noble Company</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             De automação de processos a análises avançadas, veja cases reais de como transformamos negócios com inteligência artificial.
