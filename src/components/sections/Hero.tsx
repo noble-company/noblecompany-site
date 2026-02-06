@@ -18,8 +18,8 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight mb-8">
-            Poupamos o seu tempo e aumentamos seus resultados com{" "}
-            <span className="text-primary">Soluções Noble.</span>
+            Automatizamos seu atendimento e aumentamos sua conversão com o{" "}
+            <span className="text-primary">Método N.O.B.L.E.</span>
           </h1>
           
           <motion.button
